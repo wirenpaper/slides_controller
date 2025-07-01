@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LibreOffice Remote Notes</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="app-container">
+        <header>
+            <h1>--- LibreOffice Remote ---</h1>
+            <p id="status-line">Status: INITIALIZING...</p>
+        </header>
+
+        <main id="notes-container">
+            <!-- Notes will be dynamically inserted here by JavaScript -->
+        </main>
+
+        <footer>
+            <p><strong>Controls:</strong> Automatic Sync | <strong>Status:</strong> <span id="polling-status">Polling</span></p>
+        </footer>
+    </div>
+
+    <!-- Error overlay, hidden by default -->
+    <div id="error-overlay" class="hidden">
+        <div class="error-box">
+            <h2>Connection Failed</h2>
+            <p>Could not connect to the server at <strong id="server-address"></strong>.</p>
+            <p>Please ensure the Python server is running and you are on the same network.</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

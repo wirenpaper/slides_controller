@@ -1,0 +1,113 @@
+/* --- Basic Setup & Dark Theme --- */
+:root {
+    --bg-color: #1e1e1e;
+    --text-color: #d4d4d4;
+    --dim-color: #888888;
+    --red-color: #f44336;
+    --header-bg: #252526;
+    --font: 'Consolas', 'Menlo', 'Courier New', monospace;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font);
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+/* --- Layout (Header, Main, Footer) --- */
+#app-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Full viewport height */
+}
+
+header, footer {
+    padding: 5px 20px;
+    background-color: var(--header-bg);
+    flex-shrink: 0; /* Prevent header/footer from shrinking */
+    border-bottom: 1px solid var(--dim-color);
+}
+footer {
+    border-top: 1px solid var(--dim-color);
+    border-bottom: none;
+}
+header h1, footer p {
+    margin: 5px 0;
+}
+
+main#notes-container {
+    flex-grow: 1; /* Allow main content to fill available space */
+    overflow-y: auto; /* THE KEY: Makes this area scrollable */
+    padding: 10px 20px;
+}
+
+/* --- Notes Styling --- */
+.note-item {
+    padding: 2px 0;
+    color: var(--text-color);
+    opacity: 0.7; /* Make non-active notes less prominent */
+    transition: all 0.3s ease; /* Smooth transitions for color/opacity */
+    white-space: pre-wrap; /* Respect newlines in notes */
+}
+
+.note-item::before {
+    content: attr(data-line-number); /* Display the line number */
+    display: inline-block;
+    width: 60px; /* Align numbers */
+    color: var(--dim-color);
+    text-align: right;
+    padding-right: 15px;
+}
+
+.note-item.active {
+    color: var(--red-color);
+    font-weight: bold;
+    opacity: 1.0;
+    transform: scale(1.02); /* Subtle zoom effect */
+}
+
+.note-item.active::before {
+    content: '--> ' attr(data-line-number);
+    color: var(--red-color);
+}
+
+.no-notes {
+    font-style: italic;
+    color: var(--dim-color);
+}
+
+/* --- Error Overlay --- */
+.hidden {
+    display: none !important;
+}
+
+#error-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.error-box {
+    background: var(--header-bg);
+    padding: 30px;
+    border: 1px solid var(--red-color);
+    border-radius: 8px;
+    text-align: center;
+    max-width: 500px;
+}
+
+.error-box h2 {
+    color: var(--red-color);
+    margin-top: 0;
+}
